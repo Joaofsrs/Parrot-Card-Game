@@ -2,6 +2,7 @@ const imagens = ["bobrossparrot.gif", "explodyparrot.gif", "fiestaparrot.gif", "
 let qcarta = 0;
 let contadorJogadas = 0;
 let numCartas = 0;
+let tempoJogo = 0;
 
 function randomNumber(){
     return (Math.random() - 0.5);
@@ -64,7 +65,7 @@ function pedeQuantidade(){
 function verificaVitoria(){
     const cartas = document.querySelectorAll(".flip-front");
     if(Number(cartas.length) === Number(numCartas)){
-        alert(`Você ganhou em ${contadorJogadas} jogadas!`)
+        alert(`Você ganhou em ${contadorJogadas} jogadas!  A duração do jogo foi de ${tempoJogo} segundos!`)
     }
 }
 
@@ -108,4 +109,12 @@ function viraCarta(carta){
         }
     }
 }
+
+function cronometro(){
+    tempoJogo++;
+    const cronometroJogo = document.querySelector(".cronometro");
+    cronometroJogo.innerHTML = tempoJogo;
+}
+
+setInterval(cronometro, 1000);
 pedeQuantidade();

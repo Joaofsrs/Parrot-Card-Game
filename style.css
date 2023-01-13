@@ -12,6 +12,8 @@ body{
     height: 100%;
 }
 
+/*---------- Header ----------*/
+
 header{
     width: 100%;
     margin: 30px 0;
@@ -29,11 +31,27 @@ header h1{
     color: #75B79E;
 }
 
+/*----- Cronometro -----*/
+
+.cronometro{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    color: #75B79E;
+    font-family: Roboto;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+/*---------- Corpo da Pagina ----------*/
+
 main{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
+/*----- Carta -----*/
 
 .carta{
     width: 176px;
