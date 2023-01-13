@@ -67,19 +67,23 @@ main{
     backface-visibility: hidden;
     transition: all .5s;
     transform-style: preserve-3d;
-  }
+}
 
-  .front-face {
+.front-face {
     transform: rotateY(180deg);
-  }
+}
 
-  .flip-front {
+.back-face {
     transform: rotateY(0deg);
-  }
+}
 
-  .flip-back {
+.flip-front {
+    transform: rotateY(0deg);
+}
+
+.flip-back {
     transform: rotateY(-180deg);
-  }
+}
 
 @media (max-width: 450px){
     header h1{

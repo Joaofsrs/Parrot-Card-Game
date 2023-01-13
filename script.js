@@ -1,5 +1,6 @@
-let imagens = ["bobrossparrot.gif", "explodyparrot.gif", "fiestaparrot.gif", "metalparrot.gif", "revertitparrot.gif", "tripletsparrot.gif", "unicornparrot.gif"];
-let vCard = [];
+const imagens = ["bobrossparrot.gif", "explodyparrot.gif", "fiestaparrot.gif", "metalparrot.gif", "revertitparrot.gif", "tripletsparrot.gif", "unicornparrot.gif"];
+let qcarta = 0;
+
 function randomNumber(){
     return (Math.random() - 0.5);
 }
@@ -22,21 +23,18 @@ function cartaAleatoria(qtd_de_cartas){
         }
     }
     vetorSaida.sort(randomNumber);
-    console.log(vetorSaida);
-    console.log(imagens);
-    vCard = vetorSaida;
+    return vetorSaida;
 }
 
 function geraCartas(qtd_de_cartas){
     const main = document.querySelector("main");
 
-    cartaAleatoria(qtd_de_cartas); 
+    const vCard = cartaAleatoria(qtd_de_cartas); 
 
-    console.log(vCard);
 
     for(let i = 0; i < qtd_de_cartas; i++){
         main.innerHTML += `
-            <div class="carta">
+            <div class="carta" onclick="viraCarta(this)">
                 <div class="front-face face">
                     <img src="./img/${vCard[i]}">
                 </div>
@@ -61,4 +59,42 @@ function pedeQuantidade(){
     geraCartas(numCartas);
 }
 
+function desviraCarta(){
+    const cartas = document.querySelectorAll(".escolhido");
+    cartas[0].classList.remove("flip-front");
+    cartas[0].classList.remove("escolhido");
+    cartas[1].classList.remove("flip-back");
+    cartas[1].classList.remove("escolhido");
+    cartas[2].classList.remove("flip-front");
+    cartas[2].classList.remove("escolhido");
+    cartas[3].classList.remove("flip-back");
+    cartas[3].classList.remove("escolhido");
+}
+
+function verificaAcerto(){
+    const cartas = document.querySelectorAll(".escolhido");
+    if(cartas[0].children[0].getAttribute("src") === cartas[2].children[0].getAttribute("src")){
+        cartas[0].classList.remove("escolhido");
+        cartas[1].classList.remove("escolhido");
+        cartas[2].classList.remove("escolhido");
+        cartas[3].classList.remove("escolhido");
+    }else{
+        setTimeout(desviraCarta, 1000);
+    }
+}
+
+function viraCarta(carta){
+    if(carta.children[0].classList.contains("flip-front") === false){
+        carta.children[0].classList.add("flip-front");
+        carta.children[0].classList.add("escolhido");
+        carta.children[1].classList.add("flip-back");
+        carta.children[1].classList.add("escolhido");
+        if(qcarta === 1){
+            verificaAcerto();
+            qcarta = 0;
+        }else{
+            qcarta++;
+        }
+    }
+}
 pedeQuantidade();
