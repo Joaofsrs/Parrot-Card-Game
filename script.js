@@ -1,5 +1,7 @@
 const imagens = ["bobrossparrot.gif", "explodyparrot.gif", "fiestaparrot.gif", "metalparrot.gif", "revertitparrot.gif", "tripletsparrot.gif", "unicornparrot.gif"];
 let qcarta = 0;
+let contadorJogadas = 0;
+let numCartas = 0;
 
 function randomNumber(){
     return (Math.random() - 0.5);
@@ -47,7 +49,7 @@ function geraCartas(qtd_de_cartas){
 }
 
 function pedeQuantidade(){
-    let numCartas;
+    numCartas;
     
     do{
         numCartas = prompt("Digite o numero de cartas entre 4 e 14");
@@ -57,6 +59,13 @@ function pedeQuantidade(){
     }while(numCartas%2 !== 0 || numCartas<4 || numCartas>14);
 
     geraCartas(numCartas);
+}
+
+function verificaVitoria(){
+    const cartas = document.querySelectorAll(".flip-front");
+    if(Number(cartas.length) === Number(numCartas)){
+        alert(`Você ganhou em ${contadorJogadas} jogadas!`)
+    }
 }
 
 function desviraCarta(){
@@ -81,10 +90,12 @@ function verificaAcerto(){
     }else{
         setTimeout(desviraCarta, 1000);
     }
+    verificaVitoria();
 }
 
 function viraCarta(carta){
     if(carta.children[0].classList.contains("flip-front") === false){
+        contadorJogadas++;
         carta.children[0].classList.add("flip-front");
         carta.children[0].classList.add("escolhido");
         carta.children[1].classList.add("flip-back");
