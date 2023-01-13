@@ -34,7 +34,7 @@ function geraCartas(qtd_de_cartas){
 
     const vCard = cartaAleatoria(qtd_de_cartas); 
 
-
+    main.innerHTML = "";
     for(let i = 0; i < qtd_de_cartas; i++){
         main.innerHTML += `
             <div data-test="card" class="carta" onclick="viraCarta(this)">
@@ -65,7 +65,21 @@ function pedeQuantidade(){
 function verificaVitoria(){
     const cartas = document.querySelectorAll(".flip-front");
     if(Number(cartas.length) === Number(numCartas)){
-        alert(`Você ganhou em ${contadorJogadas} jogadas!  A duração do jogo foi de ${tempoJogo} segundos!`)
+        alert(`Você ganhou em ${contadorJogadas} jogadas!  A duração do jogo foi de ${tempoJogo} segundos!`);
+        let opcao = "";
+        do{    
+            opcao = prompt("Caso queira reiniciar o jogo digite sim, caso contrario digite não:");
+            if(opcao === "sim"){
+                qcarta = 0;
+                contadorJogadas = 0;
+                numCartas = 0;
+                tempoJogo = 0;
+                pedeQuantidade();
+            }else if(opcao === "não"){
+            }else{
+                alert("Resposta invalida! Tente digitar(sim ou não) tudo com letra minuscula e acentuação correta!")
+            }
+        }while(opcao !== "sim" && opcao !== "não");
     }
 }
 
