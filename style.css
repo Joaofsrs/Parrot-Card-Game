@@ -38,19 +38,48 @@ main{
 .carta{
     width: 176px;
     height: 219px;
-    background-color: #A7E9AF;
-    border: 1px solid #99CEA8;
     border-radius: 5px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .carta img{
     width: 150px;
     height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+  }
+
+  .front-face {
+    transform: rotateY(180deg);
+  }
+
+  .flip-front {
+    transform: rotateY(0deg);
+  }
+
+  .flip-back {
+    transform: rotateY(-180deg);
+  }
 
 @media (max-width: 450px){
     header h1{
