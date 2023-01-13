@@ -36,12 +36,12 @@ function geraCartas(qtd_de_cartas){
 
     for(let i = 0; i < qtd_de_cartas; i++){
         main.innerHTML += `
-            <div class="carta" onclick="viraCarta(this)">
+            <div data-test="card" class="carta" onclick="viraCarta(this)">
                 <div class="front-face face">
-                    <img src="./img/${vCard[i]}">
+                    <img data-test="face-up-image" src="./img/${vCard[i]}">
                 </div>
                 <div class="back-face face">
-                    <img src="./img/back.png">
+                    <img data-test="face-down-image" src="./img/back.png">
                 </div>
             </div>
         `;
